@@ -1,6 +1,6 @@
 <template>
     <div>
-        App
+        Password Forget
     </div>
 </template>
 

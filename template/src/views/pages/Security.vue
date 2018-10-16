@@ -1,6 +1,7 @@
 <template>
     <div>
         Security
+        <router-view></router-view>
     </div>
 </template>
 

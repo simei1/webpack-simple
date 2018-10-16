@@ -10,10 +10,10 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "foundation-sites": "^6.5.0-rc.3",
+    "jquery": "^3.3.1",
     "moment": "^2.22.2",
     "vue": "^2.5.11",
-    "foundation-sites": "^6.5.0-rc.3",
-    "vue-resource": "1.5.1",
     "vue-i18n": "^8.2.1",
     "vue-notification": "^1.3.13",
     "vue-resource": "^1.5.1",
@@ -33,10 +33,8 @@
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
-
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
-
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",

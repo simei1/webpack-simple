@@ -1,6 +1,6 @@
 <template>
     <div>
-        App
+        Password Reset
     </div>
 </template>
 

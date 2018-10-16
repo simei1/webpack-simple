@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import jQuery from 'jquery';
 import Foundation from 'foundation-sites';
 import Notifications from 'vue-notification';

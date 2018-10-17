@@ -3,6 +3,8 @@
 @import 'variables';
 @import 'settings';
 
+@import "~vue-multiselect/dist/vue-multiselect.min.css";
+
 @import "~foundation-sites/scss/foundation";
 @include foundation-global-styles;
 

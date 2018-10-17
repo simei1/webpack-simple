@@ -3,10 +3,12 @@
         <multiselect
                 v-model="value"
                 :track-by="id"
-                :options="options"
+                :options="realOptions"
                 :multiple="multi"
                 :custom-label="getLabelById"
                 v-on:input="update"
+                :taggable="taggable"
+                @tag="addTag"
         />
     </div>
 </template>
@@ -27,6 +29,25 @@
             multi: {
                 type: Boolean,
                 default: false,
+            },
+            addApiUrl: {
+                type: String,
+                default: ''
+            },
+            addApiResponseKey: {
+                type: String,
+                default: ''
+            },
+            taggable: {
+                type: Boolean,
+                default: false,
+            }
+        },
+        data() {
+            return {
+                realOptions: {
+
+                }
             }
         },
         components: {
@@ -34,13 +55,14 @@
         },
         mounted() {
             this.update(this.value);
+            this.realOptions = this.options;
         },
         methods: {
             getLabelById(id) {
                 if (typeof(id) === 'object') {
                     return id.name;
                 }
-                let selectedObject = this.options.filter(option => option.id === id);
+                let selectedObject = this.realOptions.filter(option => option.id === id);
                 if (selectedObject[0]) {
                     return selectedObject[0].name;
                 }
@@ -54,9 +76,8 @@
                         this.$emit('input', null);
                     }
                 } else {
-                    console.log(data);
                     let parsedData = [];
-                    if(data.length > 0) {
+                    if (data.length > 0) {
                         data.forEach(function (item) {
                             if (typeof(item) === 'object') {
                                 parsedData.unshift(item.id);
@@ -69,7 +90,22 @@
                         this.$emit('input', parsedData);
                     }
                 }
-            }
+            },
+            addTag(newTag) {
+                this.$http.post(this.addApiUrl, {name: newTag}).then(response => {
+                    let newEnrichTag = response.data[this.addApiResponseKey];
+                    this.realOptions.push(newEnrichTag);
+                    if(!this.multi) {
+                        this.value = newEnrichTag;
+                    } else {
+                        this.value.unshift(newEnrichTag);
+                    }
+                    this.update(this.value);
+                }, response => {
+
+                });
+
+            },
         }
     }
 </script>

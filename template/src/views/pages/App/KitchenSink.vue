@@ -3,14 +3,17 @@
         <h1>Kitchen Sink</h1>
 
         <input-multi-select
-            :options="[{id: 1, name: 'text'}, {id: 2, name: 'text1'}]"
-            v-model="valueSingle"
+                :options="[{id: 1, name: 'text'}, {id: 2, name: 'text1'}]"
+                v-model="valueSingle"
         />
 
         <input-multi-select
                 :multi="true"
                 :options="[{id: 1, name: 'text'}, {id: 2, name: 'text1'}]"
+                :taggable="true"
                 v-model="valueMulti"
+                :add-api-url="'api/tags'"
+                :add-api-response-key="tag"
         />
     </div>
 </template>
